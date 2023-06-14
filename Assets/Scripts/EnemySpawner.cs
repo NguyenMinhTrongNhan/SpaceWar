@@ -2,28 +2,45 @@
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public float spawnInterval = 1f;
-    public float hexagonMoveDuration = 5f;
-
-    private Vector3 spawnPoint;
-
+    public GameObject EnemyPoint;
+    float maxSpawnRateInSeconds = 5f;
     private void Start()
     {
-        spawnPoint = transform.position;
-        SpawnEnemies();
+        Invoke("SpawnEnemy", maxSpawnRateInSeconds );
+        InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
     }
-
-    private void SpawnEnemies()
+    private void Update()
     {
-        // Tạo 12 phi thuyền
-        for (int i = 0; i < 12; i++)
+        
+    }
+    void SpawnEnemy()
+    {
+        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        //
+        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        //
+        GameObject anEnemy = (GameObject)Instantiate(EnemyPoint);
+        anEnemy.transform.position = new Vector2(Random.Range(min.x, max.x), max.y);
+        //
+        ScheduleNextEnemySpawn();
+    }
+    void ScheduleNextEnemySpawn()
+    {
+        float spawnInSeconds;
+        if (maxSpawnRateInSeconds > 1f)
         {
-            GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
-            EnemyShipController shipController = enemy.GetComponent<EnemyShipController>();
-
-            // Gọi hàm di chuyển theo hình lục giác và xếp lại thành hình 4x3
-            shipController.MoveInHexagonPattern(hexagonMoveDuration, i);
+            spawnInSeconds = Random.Range(1f, maxSpawnRateInSeconds);
         }
+        else
+            spawnInSeconds = 1f;
+        Invoke("SpawnEnemy", spawnInSeconds);
+    }
+    //
+    void IncreaseSpawnRate()
+    {
+        if (maxSpawnRateInSeconds > 1f)
+            maxSpawnRateInSeconds--;
+        if (maxSpawnRateInSeconds == 1f)
+            CancelInvoke("IncreaseSpawnRate");
     }
 }

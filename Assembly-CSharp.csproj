@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{38FBC82F-3BAF-6931-2351-32D747B74F1E}</ProjectGuid>
+    <ProjectGuid>{CAEC3BBE-3D47-485C-7771-F0AE24B05E87}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,8 +58,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyShipController.cs" />
-    <Compile Include="Assets\Scripts\PlayerShipController.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\PlayerShipController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
