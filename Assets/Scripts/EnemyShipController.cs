@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class EnemyShipController : MonoBehaviour
 {
+    GameObject scoreUIText;
     float speed;
     public GameObject Explosion;
     void Start()
     {
         speed = 5f;
+        scoreUIText = GameObject.FindGameObjectWithTag("ScoreText");
+
     }
     private void Update()
     {
@@ -28,6 +31,7 @@ public class EnemyShipController : MonoBehaviour
         //
         if ((col.tag == "Player") || (col.tag == "PlayerBullet"))
         {
+            scoreUIText.GetComponent<GameScore>().Score += 1000;
             StartExplosion();
             Destroy(gameObject);
         }

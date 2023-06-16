@@ -59,12 +59,18 @@
     <Compile Include="Assets\Scripts\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\ScrollerBG.cs" />
     <Compile Include="Assets\Scripts\EnemyGun.cs" />
+    <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\EnemyShipController.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\PlayerShipController.cs" />
-    <Compile Include="Assets\Scripts\Destroyer.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameScore.cs" />
+    <Compile Include="Assets\Scripts\StarMove.cs" />
+    <Compile Include="Assets\Scripts\StarGenerator.cs" />
+    <Compile Include="Assets\Scripts\Planet.cs" />
+    <Compile Include="Assets\Scripts\PlanetController.cs" />
+    <Compile Include="Assets\Scripts\TimeCount.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

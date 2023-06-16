@@ -4,6 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPoint;
     float maxSpawnRateInSeconds = 5f;
+
     private void Start()
     {
        
@@ -44,6 +45,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void ScheduleEnemySpawner()
     {
+        maxSpawnRateInSeconds = 5f;
         Invoke("SpawnEnemy", maxSpawnRateInSeconds);
         InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
     }

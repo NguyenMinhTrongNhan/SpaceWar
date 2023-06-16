@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PlayerShipController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerShipController : MonoBehaviour
     public GameObject BulletArea2;
     public float speed;
     public GameObject Explosion;
+    public AudioSource Shoot;
     //
     public Text LiveText;
     const int MaxLives = 3;
@@ -16,7 +18,8 @@ public class PlayerShipController : MonoBehaviour
     public void Init()
     {
         lives = MaxLives;
-        LiveText.text = lives.ToString(); 
+        LiveText.text = lives.ToString();
+        transform.position = new Vector2(0, 0);
         gameObject.SetActive(true);
     }
     void Start ()
@@ -27,6 +30,7 @@ public class PlayerShipController : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
+            Shoot.Play();
             GameObject bullet01 = (GameObject)Instantiate (BulletPrefab);
             bullet01.transform.position = BulletArea1.transform.position;
             GameObject bullet02 = (GameObject)Instantiate(BulletPrefab);
