@@ -1,11 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShipController : MonoBehaviour
 {
+    public GameObject GameManagerGO;
     public GameObject BulletPrefab;
     public GameObject BulletArea1;
     public GameObject BulletArea2;
     public float speed;
+    public GameObject Explosion;
+    //
+    public Text LiveText;
+    const int MaxLives = 3;
+    int lives;
+    public void Init()
+    {
+        lives = MaxLives;
+        LiveText.text = lives.ToString(); 
+        gameObject.SetActive(true);
+    }
     void Start ()
     {
 
@@ -46,5 +59,27 @@ public class PlayerShipController : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, min.y, max.y);
 
         transform.position = pos;
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //
+        if ((col.tag == "Enemy") || (col.tag == "EnemyBullet"))
+        {
+            lives--;
+            LiveText.text = lives.ToString();
+            if(lives == 0)
+            {
+                GameManagerGO.GetComponent<GameManager>().SetGameManagerStatus(GameManager.GameManagerStatus.GameOver);
+                //
+                gameObject.SetActive(false);           
+            }
+            StartExplosion();
+            //Destroy(gameObject);
+        }
+    }
+    void StartExplosion()
+    {
+        GameObject explosion = (GameObject)Instantiate(Explosion);
+        explosion.transform.position = transform.position;
     }
 }

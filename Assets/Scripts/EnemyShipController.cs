@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyShipController : MonoBehaviour
 {
     float speed;
+    public GameObject Explosion;
     void Start()
     {
         speed = 5f;
@@ -21,5 +22,19 @@ public class EnemyShipController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //
+        if ((col.tag == "Player") || (col.tag == "PlayerBullet"))
+        {
+            StartExplosion();
+            Destroy(gameObject);
+        }
+    }
+    void StartExplosion()
+    {
+        GameObject explosion = (GameObject)Instantiate(Explosion);
+        explosion.transform.position = transform.position;
     }
 }
